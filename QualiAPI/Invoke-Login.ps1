@@ -21,7 +21,7 @@
 		Write-Host 'Authentication Token set to: ' $Auth
 		Write-Host 'Setting ' $BaseURL 'as base url' -ForegroundColor Magenta
 		Set-Variable -Name 'Auth' -Value $Auth -Scope Global
-		Write-Host -Object 'You Are Now Loged In!' -ForegroundColor Green
+		Write-Host -Object 'You Are Now Logged In!' -ForegroundColor Green
 	}
 	Catch
 	{
