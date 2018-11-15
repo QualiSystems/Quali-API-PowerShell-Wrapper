@@ -5,5 +5,5 @@
          [switch]
 		 $asJson = $false
     )
-    Invoke-RequestManager -Url "/Scheduling/Queue" -Method GET
+    Invoke-RequestManager -Url "/Scheduling/Queue" -Method GET -asJson:$asJson
 }

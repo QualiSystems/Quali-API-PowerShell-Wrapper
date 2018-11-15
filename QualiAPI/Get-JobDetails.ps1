@@ -7,5 +7,5 @@
          [switch]
 		 $asJson = $false
     )
-    Invoke-RequestManager -Url "/Scheduling/Jobs/$JobId" -Method GET
+    Invoke-RequestManager -Url "/Scheduling/Jobs/$JobId" -Method GET -asJson:$asJson
 }

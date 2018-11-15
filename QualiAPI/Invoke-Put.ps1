@@ -8,5 +8,13 @@
         [string]
         $body
     )
-    return Invoke-RestMethod -Uri $Uri -Method Put -Body $body -ContentType $ContentTypeJson
+	
+	if ([string]::IsNullOrEmpty($Auth)) {
+		return Invoke-RestMethod -Uri $Uri -Method Put -Body $body -ContentType $ContentTypeJson  -Headers @{
+			Authorization = "Basic $Auth"
+		}
+	}
+	else {
+		return Invoke-RestMethod -Uri $Uri -Method Put -Body $body -ContentType $ContentTypeJson
+	}
 }
