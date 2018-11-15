@@ -7,5 +7,6 @@
          [switch]
 		 $asJson = $false
     )
-    Invoke-RequestManager -Url "/Scheduling/SuiteTemplates/$SuiteName" -Method GET
+	$SuiteName = [System.Web.HttpUtility]::UrlEncode($SuiteName)
+    Invoke-RequestManager -Url "/Scheduling/SuiteTemplates/$SuiteName" -Method GET -asJson:$asJson
 }
