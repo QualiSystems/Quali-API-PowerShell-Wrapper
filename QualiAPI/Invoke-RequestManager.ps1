@@ -6,6 +6,8 @@
          $Url,
          [Method]
          $Method,
+		 [string]
+         $body,
          [switch]
 		 $asJson = $false
     )
@@ -14,14 +16,24 @@
     {
         Try
         {
-            $response = Invoke-Expression "Invoke-$Method -Uri $BaseURL/$Url"
+		    if ([string]::IsNullOrEmpty($body))
+			{
+				$expression = "Invoke-$Method -Uri '$BaseURL/$Url'"
+			}
+			else
+			{
+				$expression = "Invoke-$Method -Uri '$BaseURL/$Url' -body ""$body"""
+			}
+
+            $response = Invoke-Expression $expression
+			
             if ($response.count -eq 0) 
 		    {
 			    Write-Host -Object 'No results found'
 		    }
 		    else 
 		    {
-			    if ($asJson.IsPresent)
+			    if ($asJson.IsPresent -and $asJson -eq $true)
 			    {
 				    return $response | ConvertTo-Json
 			    }
